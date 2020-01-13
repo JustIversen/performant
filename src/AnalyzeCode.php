@@ -22,6 +22,13 @@ class AnalyzeCode extends Command
     protected $description = 'Analyze code execution';
 
     /**
+     * An empty table for display performance analytics
+     * 
+     * @var array 
+     */
+    protected $table = [];
+    
+    /**
      * Create a new command instance
      *
      * AnalyzeCode constructor.
