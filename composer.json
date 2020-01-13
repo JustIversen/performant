@@ -1,0 +1,39 @@
+{
+    "name": "JustIversen/Performant",
+    "description": "A demo package",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jens Just Iversen",
+            "email": "jens@justiversen.dk",
+            "homepage": "https://justiversen.dk",
+            "role": "Developer"
+        },
+        {
+            "name": "Kristian Just",
+            "email": "kristian@justiversen.dk",
+            "homepage": "https://justiversen.dk",
+            "role": "Developer"
+        },
+        {
+            "name": "Kim Andre Langholz",
+            "email": "kal@justiversen.dk",
+            "homepage": "https://justiversen.dk",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "JustIversen\\Performant\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "JustIversen\\Performant\\PerformantServiceProvider"
+            ]
+        }
+    }
+}
