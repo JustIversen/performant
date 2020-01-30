@@ -2,7 +2,6 @@
 
 namespace JustIversen\Performant;
 
-use JustIversen\Performant\AnalyzeCode;
 use Illuminate\Support\ServiceProvider;
 
 class PerformantServiceProvider extends ServiceProvider

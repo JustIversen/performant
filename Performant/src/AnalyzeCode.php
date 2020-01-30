@@ -23,6 +23,7 @@ class AnalyzeCode extends Command
 
     /**
      * An empty table for display performance analytics
+<<<<<<< HEAD:Performant/src/AnalyzeCode.php
      *
      * @var array
      */
@@ -43,7 +44,7 @@ class AnalyzeCode extends Command
      */
     protected $time = null;
 
-    /**git
+    /**
      * Create a new command instance
      *
      * AnalyzeCode constructor.
