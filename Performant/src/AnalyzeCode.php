@@ -22,6 +22,28 @@ class AnalyzeCode extends Command
     protected $description = 'Analyze code execution';
 
     /**
+     * An empty table for display performance analytics
+     *
+     * @var array
+     */
+    protected $table = [];
+
+    /**
+     * @var null
+     */
+    protected $answer = null;
+
+    /**
+     * @var array
+     */
+    protected $queries = [];
+
+    /**
+     * @var null
+     */
+    protected $time = null;
+
+    /**git
      * Create a new command instance
      *
      * AnalyzeCode constructor.
@@ -38,8 +60,8 @@ class AnalyzeCode extends Command
      */
     public function handle()
     {
-        if (app()->environment('production') && !
-            $this->confirm('You are in a production mode! Are you sure you want to proceed?')) {
+        if (app()->environment('production')
+            && ! $this->confirm('You are in production mode! Are you sure you want to proceed?')) {
             return;
         }
 
@@ -61,15 +83,73 @@ class AnalyzeCode extends Command
         $this->line("\nTop 10 worst performing queries");
         $this->table(['id','query', 'time (ms)'], collect($this->table)->sortByDesc('time')->slice(0,10));
 
-        if($id = $this->ask('Enter query ID to see full query')) {
-            $query = collect($this->queries)->firstWhere('id', '=', $id);
+       $keepRunning = true;
+        if(! empty($this->table)) {
+            while($keepRunning) {
+                $question = $this->choice('Select one of the following options:',
+                    ['Show the full-length SQL query for a particular query ID.',
+                        'Analyze the performance of a particular query ID.',
+                        'Shut down our analyzer.']);
 
-            $this->line('Time: ' . $query['time']);
-            $this->line('Query: ' . $query['query']);
+                if ($question === 'Show the full-length SQL query for a particular query ID.') {
+                    $this->displayQuery($this->queries);
+                } elseif ($question === 'Analyze the performance of a particular query ID.') {
+                    $this->analyzeQuery($this->queries);
+                } elseif ($question === 'Shut down our analyzer.') {
+                    $keepRunning = false;
+                }
+            }
         }
     }
 
-    protected function getQueries(Callable $callback){
+    /**
+     * @param $queries
+     */
+    protected function analyzeQuery($queries)
+    {
+        $counter = 0;
+        do{
+            if($counter === 0) {
+                $this->answer = $this->ask('Enter the ID of the Query you want to analyze');
+            }else{
+                $this->answer = $this->ask('Your input didn\'t match a query ID. Please try again:');
+            }
+            $counter++;
+        }while(!is_numeric($this->answer) && $this->answer < 1 && $this->answer > 10);
+
+        $query = collect($queries)->firstWhere('id', '=', $this->answer);
+
+        $queryObject = new Query();
+        $queryObject->query = 'Explain '.$query['query'];
+        $queryObject->explainCollection = collect(DB::select(DB::raw('Explain '.$query['query'])));
+    }
+
+    /**
+     * @param $queries
+     */
+    protected function displayQuery($queries)
+    {
+        $counter = 0;
+        do{
+            if($counter === 0) {
+                $this->answer = $this->ask('Enter the ID of the Query you want to see in full length: ');
+            }else{
+                $this->answer = $this->ask('Your input didn\'t match a query ID. Please try again:');
+            }
+            $counter++;
+        }while(!is_numeric($this->answer) && $this->answer < 1 && $this->answer > 10);
+
+        $query = collect($queries)->firstWhere('id', '=', $this->answer);
+        $this->info('Query ID: ' . $query['id']);
+        $this->info('Query: ' . $query['query']);
+        $this->info('Time: ' . $query['time'] .'ms');
+    }
+
+    /**
+     * @param callable $callback
+     */
+    protected function getQueries(Callable $callback)
+    {
         $this->queries = [];
 
         DB::enableQueryLog();
@@ -96,12 +176,16 @@ class AnalyzeCode extends Command
     }
 
     /**
-     * Track execution time
+     * @param callable $callback
+     * @return float|string
      */
-    protected function track(Callable $callback){
+    protected function track(Callable $callback)
+    {
         $start = microtime(true);
         $callback();
 
         return (microtime(true) - $start);
     }
+
+
 }

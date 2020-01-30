@@ -1,6 +1,5 @@
 <?php
 
-
 namespace JustIversen\Performant;
 
 use JustIversen\Performant\AnalyzeCode;
