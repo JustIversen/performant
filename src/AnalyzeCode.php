@@ -23,7 +23,6 @@ class AnalyzeCode extends Command
 
     /**
      * An empty table for display performance analytics
-<<<<<<< HEAD:Performant/src/AnalyzeCode.php
      *
      * @var array
      */
@@ -118,11 +117,28 @@ class AnalyzeCode extends Command
             $counter++;
         }while(!is_numeric($this->answer) && $this->answer < 1 && $this->answer > 10);
 
+        $this->line("\nStarted analyzing your query. This might take a while depending on the query...");
+
         $query = collect($queries)->firstWhere('id', '=', $this->answer);
 
         $queryObject = new Query();
         $queryObject->query = 'Explain '.$query['query'];
         $queryObject->explainCollection = collect(DB::select(DB::raw('Explain '.$query['query'])));
+        $queryObject->flushCollection = $this->getFlushStatus($query['query']);
+
+        var_dump($queryObject->analyzeQuery());
+        //var_dump($queryObject->flushCollection);
+
+        // Vi kunne lave noget Hvis explain collection !== null, så analyser følgende. Ellers, måske fejl?
+
+/*
+        $first = $query[0];
+        if ($query['query']->starts === '29' && $first->Action === '1') {
+            $last = end($array);
+            if ($last->positionId === '29' && $last->Action === '0' {
+                // Stuff
+            }
+        }*/
     }
 
     /**
@@ -174,6 +190,15 @@ class AnalyzeCode extends Command
                  'time' => $data['time']
              ];
          }
+    }
+
+    protected function getFlushStatus($query)
+    {
+        return DB::transaction(function() use ($query) {
+        DB::select(DB::raw('FLUSH STATUS;'));
+        DB::select(DB::raw($query));
+        return DB::select(DB::raw('SHOW STATUS;'));
+        });
     }
 
     /**
