@@ -125,6 +125,8 @@ class AnalyzeCode extends Command
 
         $this->line("\nStarted analyzing your query. This might take a while depending on the query...");
 
+        $this->line("\nStarted analyzing your query. This might take a while depending on the query...");
+
         $query = collect($queries)->firstWhere('id', '=', $this->answer);
 
         $queryObject = new Query();
@@ -204,6 +206,15 @@ class AnalyzeCode extends Command
             DB::select(DB::raw('FLUSH STATUS;'));
             DB::select(DB::raw($query));
             return DB::select(DB::raw('SHOW STATUS;'));
+        });
+    }
+
+    protected function getFlushStatus($query)
+    {
+        return DB::transaction(function() use ($query) {
+        DB::select(DB::raw('FLUSH STATUS;'));
+        DB::select(DB::raw($query));
+        return DB::select(DB::raw('SHOW STATUS;'));
         });
     }
 
