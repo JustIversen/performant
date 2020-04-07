@@ -135,18 +135,7 @@ class AnalyzeCode extends Command
 
         //var_dump($queryObject->analyzeQuery());
 
-        var_dump($queryObject->explainCollection);
-
-        // Vi kunne lave noget Hvis explain collection !== null, så analyser følgende. Ellers, måske fejl?
-
-        /*
-        $first = $query[0];
-        if ($query['query']->starts === '29' && $first->Action === '1') {
-            $last = end($array);
-            if ($last->positionId === '29' && $last->Action === '0' {
-                // Stuff
-            }
-        }*/
+        var_dump($queryObject->flushCollection);
     }
 
     /**
