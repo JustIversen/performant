@@ -8,6 +8,7 @@ class Query
     public $query; //SQL statement
     public $explainCollection; //collection
     public $flushCollection; //created_temp_disk = 1
+    public $explainJsonCollection;
 
     /**
      * $arrayOfTests = an array of all parameter-classes that we want to test.
@@ -15,6 +16,7 @@ class Query
      */
     private $arrayOfTests = [
         \JustIversen\Performant\QueryFunctions\ExplainFullTableScanHigh::class,
+        \JustIversen\Performant\QueryFunctions\ExplainUsingIndexCondition::class,
         \JustIversen\Performant\QueryFunctions\FlushWroteToTempDisk::class,
         \JustIversen\Performant\QueryFunctions\ExplainUsingFileSort::class
     ];

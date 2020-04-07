@@ -26,7 +26,12 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "JustIversen\\Performant\\": "src"
+            "JustIversen\\Performant\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "JustIversen\\Performant\\Test\\": "tests/"
         }
     },
     "extra": {
@@ -35,5 +40,8 @@
                 "JustIversen\\Performant\\PerformantServiceProvider"
             ]
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "9"
     }
 }
