@@ -3,6 +3,7 @@
 
 # Performant
 
+Identify performance issues in your Laravel application and have _performant_ help you solve them.
 
 ## Installation
 
