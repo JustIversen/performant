@@ -20,7 +20,7 @@ class ExplainFullTableScanHigh implements QueryInterface
      */
     public function validate($query)
     {
-        if ($query->explainCollection->contains('type', 'all') and $query->explainCollection->contains(
+        if ($query->explainCollection->contains('type', 'ALL') and $query->explainCollection->contains(
             function ($array) {
                 foreach ($array as $parameter => $value) {
                     if ($parameter == 'rows') {
@@ -60,7 +60,7 @@ class ExplainFullTableScanHigh implements QueryInterface
      */
     public function test($collection): bool
     {
-        if ($collection->contains('type', 'all') and $collection->contains(
+        if ($collection->contains('type', 'ALL') and $collection->contains(
             function ($array) {
                 foreach ($array as $parameter => $value) {
                     if ($parameter == 'rows') {
