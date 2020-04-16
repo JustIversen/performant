@@ -27,8 +27,10 @@ class ExplainUsingIndexCondition implements QueryInterface
 
     public function solution()
     {
-        return "You're using 'Index Push-down' (ICP) instead of a convering index. We recommend creating an index containing all
-        columns used in your 'Select' and 'Where' clauses.";
+        return "Your query didn't have an index covering all your requirements. \n
+                This resulted in an 'Index Push-down' (ICP) instead of a covering index. \n
+                We recommend creating an index containing all columns used in your 'SELECT' and 'WHERE' clauses. \n
+                More info -> https://dev.mysql.com/doc/refman/5.6/en/index-condition-pushdown-optimization.html";
     }
 
     public function test($collection)

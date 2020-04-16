@@ -7,8 +7,13 @@ use \JustIversen\Performant\QueryFunctions\ExplainFullTableScanHigh;
 
 class ExplainFullTableScanHighTest extends TestCase
 {
-    // docker-compose exec app php vendor/phpunit/phpunit/phpunit packages/JustIversen/tests/QueryFunctions/ExplainFullTableScanHighTest.php
 
+    /**
+     * Will test if there are enough rows being scanned to trigger a FullTableScan error (True).
+     * We expect this test to return False since we have 19999 rows, which is less than the required 20,000.
+     *
+     * @return void
+     */
     public function testTooFewRowsToBeTriggered()
     {
         $testData = new \Illuminate\Database\Eloquent\Collection([
@@ -33,6 +38,10 @@ class ExplainFullTableScanHighTest extends TestCase
 
     /**
      * @depends testTooFewRowsToBeTriggered
+     *
+     * Will test if there are enough rows being scanned to trigger a FullTableScan error (True).
+     * We expect this test to return True since we have 20000 rows, which is equal to the required 20,000.
+     *
      */
     public function testEnoughRowsToBeTriggered()
     {
@@ -58,6 +67,9 @@ class ExplainFullTableScanHighTest extends TestCase
 
     /**
      * @depends testEnoughRowsToBeTriggered
+     *
+     * We will test if the FullTableScan will be triggered when a wrong type is inputted while enough rows are being processed.
+     * We expect this test to return false, since it shouldn't react to any other type than 'all'.
      */
     public function testWontBeTriggeredWithWrongType()
     {

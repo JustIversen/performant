@@ -7,8 +7,13 @@ use \JustIversen\Performant\QueryFunctions\ExplainUsingFilesort;
 
 class ExplainUsingFilesortTest extends TestCase
 {
-    // docker-compose exec app php vendor/phpunit/phpunit/phpunit packages/JustIversen/tests/QueryFunctions/ExplainUsingFilesortTest.php
 
+    /**
+     * We're testing if the UsingFileSort class will be triggered by the Extra field containing 'Using filesort'.
+     * We're expecting the test to return True, since the Extra field does contain 'Using filesort'.
+     *
+     * @return void
+     */
     public function testExtraContainsUsingFileSort()
     {
         $testData = new \Illuminate\Database\Eloquent\Collection([
@@ -33,6 +38,10 @@ class ExplainUsingFilesortTest extends TestCase
 
     /**
      * @depends testExtraContainsUsingFileSort
+     *
+     * We're testing if the UsingFileSort class will be triggered by the Extra field containing 'Using filesort' amongst other values.
+     * We're expecting the test to return True, since the Extra field does contain 'Using filesort'.
+     *
      */
     public function testExtraContainsUsingFilesortSeveralValues()
     {
@@ -58,6 +67,10 @@ class ExplainUsingFilesortTest extends TestCase
 
     /**
      * @depends testExtraContainsUsingFilesortSeveralValues
+     *
+     * We're testing if the UsingFileSort class will be triggered when the Extra field doesn't contain the sentence 'Using filesort'.
+     * We're expecting the test to return False, since the Extra field does NOT contain 'Using filesort'.
+     *
      */
     public function testExtraDoesNotContainsUsingFilesort()
     {

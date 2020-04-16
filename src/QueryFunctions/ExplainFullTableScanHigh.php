@@ -21,7 +21,7 @@ class ExplainFullTableScanHigh implements QueryInterface
     public function validate($query)
     {
         if ($query->explainCollection->contains('type', 'all') and $query->explainCollection->contains(
-            function ($array, $index) {
+            function ($array) {
                 foreach ($array as $parameter => $value) {
                     if ($parameter == 'rows') {
                         if ($value >= $this->minRows) {
@@ -40,16 +40,15 @@ class ExplainFullTableScanHigh implements QueryInterface
 
     /**
      * Error/Optimization message.
-     * Will be returned in case this is triggered "worst" error/point of optimization. 
      *
      * @return void
      */
     public function solution()
     {
-        return 'The query scanned the entire table/s to find matching rows for the join.
-        This is the worst performing join. Try adding a index to your table/s ';
-        // TODO write a better error message and potentially add an option that allows the
-        // program to create the solution/index for them.
+        return "The query scanned the entire table/s records (More than {$this->minRows} records in this case) to meet the given requirements.\n
+                This usually results in suboptimal performance and can in most cases be fixed by adding an index.\n
+                If an index exists but isn't used, try adding FORCE INDEX to your query.\n
+                More info -> https://dev.mysql.com/doc/refman/8.0/en/table-scan-avoidance.html";
     }
 
     /**
@@ -59,10 +58,10 @@ class ExplainFullTableScanHigh implements QueryInterface
      * @param [type] $collection
      * @return boolean
      */
-    public function test($collection) : bool
+    public function test($collection): bool
     {
         if ($collection->contains('type', 'all') and $collection->contains(
-            function ($array, $index) {
+            function ($array) {
                 foreach ($array as $parameter => $value) {
                     if ($parameter == 'rows') {
                         if ($value >= $this->minRows) {

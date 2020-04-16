@@ -7,8 +7,13 @@ use \JustIversen\Performant\QueryFunctions\ExplainUsingIndexCondition;
 
 class ExplainUsingIndexConditionTest extends TestCase
 {
-    // docker-compose exec app php vendor/phpunit/phpunit/phpunit packages/JustIversen/tests/QueryFunctions/ExplainUsingIndexConditionTest.php
 
+    /**
+     * We're testing if the UsingIndexCondition class will be triggered by the Extra field containing 'Using index condition'.
+     * We're expecting the test to return True, since the Extra field does contain 'Using index condition'.
+     *
+     * @return void
+     */
     public function testExtraContainsUsingIndexConditionSingleValue()
     {
         $testData = new \Illuminate\Database\Eloquent\Collection([
@@ -33,6 +38,10 @@ class ExplainUsingIndexConditionTest extends TestCase
 
     /**
      * @depends testExtraContainsUsingIndexConditionSingleValue
+     *
+     * We're testing if the UsingIndexCondition class will be triggered by the Extra field containing 'Using index condition' amongst other values.
+     * We're expecting the test to return True, since the Extra field does contain 'Using index condition'.
+     *
      */
     public function testExtraContainsUsingIndexConditionSeveralValues()
     {
@@ -58,6 +67,10 @@ class ExplainUsingIndexConditionTest extends TestCase
 
     /**
      * @depends testExtraContainsUsingIndexConditionSeveralValues
+     *
+     * We're testing if the UsingIndexCondition class will be triggered when the Extra field doesn't contain the sentence 'Using index condition'.
+     * We're expecting the test to return False, since the Extra field does NOT contain 'Using index condition'.
+     *
      */
     public function testExtraDoesNotContainsUsingIndexCondition()
     {
@@ -80,5 +93,4 @@ class ExplainUsingIndexConditionTest extends TestCase
 
         $this->assertFalse($class->test($testData));
     }
-
 }

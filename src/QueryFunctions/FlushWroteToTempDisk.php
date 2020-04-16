@@ -28,11 +28,12 @@ class FlushWroteToTempDisk implements QueryInterface
 
     public function solution()
     {
-        return "Your query uses more memory than allocated, forcing it to write part of the tmeporary data to a disk.
-        This is slowing down the task substantially. You may want to increase the (tmp_table_size) or (max_heap_table_size)
-        value to lessen the likelihood that internal temporary tables in memory will be converted to on-disk tables.";
-        // TODO write a better error message and potentially add an option that allows the
-        // program to create the solution/index for them.
+        return "Your query uses more memory than allocated, forcing it to write part of the temporary data to a disk.\n
+                This is slowing down the query substantially.\n
+                You may want to increase the (tmp_table_size) or (max_heap_table_size) value to lessen the likelihood
+                that internal temporary tables in memory will be converted to on-disk tables. \n
+                More info -> https://dev.mysql.com/doc/refman/8.0/en/server-status-variables.html#statvar_Created_tmp_disk_tables";
+
     }
 
     public function test($collection)

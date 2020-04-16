@@ -35,9 +35,9 @@ class Query
             $result = (new $function)->validate($this);
             if ($result !== false) {
                 return $result;
-                break;
+            break;
             }
         }
-        // TODO in case there's no optimizations to be made based on our array of Tests, then create and return a message.
+        return "The analysis we just ran didn't find anything wrong with your query.";
     }
 }
