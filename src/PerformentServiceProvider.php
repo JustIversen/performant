@@ -16,6 +16,7 @@ class PerformantServiceProvider extends ServiceProvider
         if($this->app->runningInConsole()) {
             $this->registerArtisanCommands();
         }
+        $this->loadTranslationsFrom(__DIR__.'/../../resources/lang/en','performant');
     }
 
     /**
