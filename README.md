@@ -7,7 +7,7 @@ Identify performance issues in your Laravel application and have _performant_ he
 
 ## Installation
 
-`composer require --dev justiversen/laravel-performant`
+`composer require --dev justiversen/performant`
 
 ## Usage
 
