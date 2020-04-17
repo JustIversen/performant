@@ -1,5 +1,5 @@
-![Packagist Downloads](https://img.shields.io/packagist/dt/JustIversen/laravel-performant)
-![Code size](https://img.shields.io/github/languages/code-size/JustIversen/laravel-performant)
+![Packagist Downloads](https://img.shields.io/packagist/dt/JustIversen/performant)
+![Code size](https://img.shields.io/github/languages/code-size/JustIversen/performant)
 
 # Performant
 
