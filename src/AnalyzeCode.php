@@ -12,7 +12,7 @@ class AnalyzeCode extends Command
      *
      * @var string
      */
-    protected $signature = 'analyze:code';
+    protected $signature = 'performant:analyze';
 
     /**
      * The console command description
