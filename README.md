@@ -11,6 +11,12 @@ Identify performance issues in your Laravel application and have _performant_ he
 
 ## Usage
 
+Run the artisan command:
+
+`php artisan performant:analyze`
+
+Write/paste the code from your application, that you want to run.
+
 
 ## Contributers
 
