@@ -79,7 +79,7 @@ class AnalyzeCode extends Command
             });
         });
 
-        $this->table(['id', 'query', 'time'], $this->table);
+        $this->table(['id', 'query', 'time (ms)'], $this->table);
 
         $this->line("\nTotal queries found: " . count($this->queries));
         $this->line('Total time: ' . $this->time . ' sec');
