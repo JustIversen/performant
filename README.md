@@ -1,5 +1,6 @@
 ![Packagist Downloads](https://img.shields.io/packagist/dt/JustIversen/performant)
 ![Code size](https://img.shields.io/github/languages/code-size/JustIversen/performant)
+![Build Status](https://img.shields.io/github/workflow/status/JustIversen/performant/PHP%20Composer)
 
 # Performant
 
@@ -11,7 +12,7 @@ Identify performance issues in your Laravel application and have _performant_ he
 
 ## Testing
 
-`php vendor/bin/phpunit`
+`composer run-scripts test`
 
 ## Usage
 
