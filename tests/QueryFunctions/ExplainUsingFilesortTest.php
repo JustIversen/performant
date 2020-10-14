@@ -2,6 +2,7 @@
 
 namespace JustIversen\Performant\Test;
 
+use Illuminate\Support\Collection;
 use PHPUnit\Framework\TestCase;
 use \JustIversen\Performant\QueryFunctions\ExplainUsingFilesort;
 
@@ -16,7 +17,7 @@ class ExplainUsingFilesortTest extends TestCase
      */
     public function testExtraContainsUsingFileSort()
     {
-        $testData = new \Illuminate\Database\Eloquent\Collection([
+        $testData = new Collection([
             ['id' => 1],
             ['select_type' => 'SIMPLE'],
             ['table' => 'airlines'],
@@ -45,7 +46,7 @@ class ExplainUsingFilesortTest extends TestCase
      */
     public function testExtraContainsUsingFilesortSeveralValues()
     {
-        $testData = new \Illuminate\Database\Eloquent\Collection([
+        $testData = new Collection([
             ['id' => 1],
             ['select_type' => 'SIMPLE'],
             ['table' => 'airlines'],
@@ -74,7 +75,7 @@ class ExplainUsingFilesortTest extends TestCase
      */
     public function testExtraDoesNotContainsUsingFilesort()
     {
-        $testData = new \Illuminate\Database\Eloquent\Collection([
+        $testData = new Collection([
             ['id' => 1],
             ['select_type' => 'SIMPLE'],
             ['table' => 'airlines'],

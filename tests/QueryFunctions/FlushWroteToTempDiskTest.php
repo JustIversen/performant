@@ -90,7 +90,7 @@ class FlushWroteToTempDiskTest extends TestCase
     {
         $testSetOne = new \stdClass();
         $testSetOne->Variable_name = "Created_tmp_disk_tables";
-        $testSetOne->Value = "1";
+        $testSetOne->Value = 1;
 
         $testSetTwo = new \stdClass();
         $testSetTwo->Variable_name = "Ssl_server_not_after";
@@ -98,11 +98,11 @@ class FlushWroteToTempDiskTest extends TestCase
 
         $testSetThree = new \stdClass();
         $testSetThree->Variable_name = "Table_open_cache_hits";
-        $testSetThree->Value = "3";
+        $testSetThree->Value = 3;
 
         $testSetFour = new \stdClass();
         $testSetFour->Variable_name = "Uptime";
-        $testSetFour->Value = "108286";
+        $testSetFour->Value = 108286;
 
         $testArray = [
             0 => $testSetOne,

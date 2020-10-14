@@ -60,10 +60,10 @@ class ExplainFullTableScanHigh implements QueryInterface
      */
     public function test($collection): bool
     {
-        if ($collection->contains('type', 'ALL') and $collection->contains(
+        if ($collection->contains('type', 'all') and $collection->contains(
             function ($array) {
                 foreach ($array as $parameter => $value) {
-                    if ($parameter == 'rows') {
+                    if ($parameter === 'rows') {
                         if ($value >= $this->minRows) {
                             return true;
                         }

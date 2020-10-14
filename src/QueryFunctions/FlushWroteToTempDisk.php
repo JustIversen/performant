@@ -17,7 +17,7 @@ class FlushWroteToTempDisk implements QueryInterface
 
             foreach ($array as $key => $value) {
                 if (in_array('Created_tmp_disk_tables', $array)) {
-                    if ($key == 'Value' and $value === 1) {
+                    if ($key === 'Value' and $value === 1) {
                         return $this->solution();
                     }
                 }
@@ -39,12 +39,11 @@ class FlushWroteToTempDisk implements QueryInterface
     public function test($collection)
     {
         foreach ($collection as $object) {
-
             $array = (array) $object;
 
             foreach ($array as $key => $value) {
                 if (in_array('Created_tmp_disk_tables', $array)) {
-                    if ($key == 'Value' and $value == 1) {
+                    if ($key === 'Value' and $value === 1) {
                         return true;
                     }
                 }

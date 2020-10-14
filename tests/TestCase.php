@@ -1,6 +1,6 @@
 <?php
 
-namespace JustIversen\Performant\tests;
+namespace JustIversen\Performant\Test;
 
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 

@@ -2,6 +2,7 @@
 
 namespace JustIversen\Performant\Test;
 
+use Illuminate\Support\Collection;
 use PHPUnit\Framework\TestCase;
 use \JustIversen\Performant\QueryFunctions\ExplainFullTableScanHigh;
 
@@ -16,7 +17,7 @@ class ExplainFullTableScanHighTest extends TestCase
      */
     public function testTooFewRowsToBeTriggered()
     {
-        $testData = new \Illuminate\Database\Eloquent\Collection([
+        $testData = new Collection([
             ['id' => 1],
             ['select_type' => 'SIMPLE'],
             ['table' => 'airlines'],
@@ -45,7 +46,7 @@ class ExplainFullTableScanHighTest extends TestCase
      */
     public function testEnoughRowsToBeTriggered()
     {
-        $testData = new \Illuminate\Database\Eloquent\Collection([
+        $testData = new Collection([
             ['id' => 1],
             ['select_type' => 'SIMPLE'],
             ['table' => 'airlines'],
@@ -73,7 +74,7 @@ class ExplainFullTableScanHighTest extends TestCase
      */
     public function testWontBeTriggeredWithWrongType()
     {
-        $testData = new \Illuminate\Database\Eloquent\Collection([
+        $testData = new Collection([
             ['id' => 1],
             ['select_type' => 'SIMPLE'],
             ['table' => 'airlines'],
