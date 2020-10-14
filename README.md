@@ -10,10 +10,6 @@ Identify performance issues in your Laravel application and have _performant_ he
 
 `composer require --dev justiversen/performant`
 
-## Testing
-
-`composer run-scripts test`
-
 ## Usage
 
 Run the artisan command:
@@ -22,11 +18,16 @@ Run the artisan command:
 
 Write/paste the code from your application, that you want to run.
 
+## Testing
+
+`composer run-scripts test`
+
 
 ## Contributers
 
  - [Kim André Langholz](https://github.com/KimLangholz)
  - [Jens Just Iversen](https://github.com/JensJI)
+ - [Kristian Just](https://github.com/KristianI)
 
 ## License
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
