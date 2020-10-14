@@ -20,7 +20,7 @@ Write/paste the code from your application, that you want to run.
 
 ## Testing
 
-`composer run-scripts test`
+`composer run-script test`
 
 
 ## Contributers
