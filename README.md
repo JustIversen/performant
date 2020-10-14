@@ -9,6 +9,10 @@ Identify performance issues in your Laravel application and have _performant_ he
 
 `composer require --dev justiversen/performant`
 
+## Testing
+
+`php vendor/bin/phpunit`
+
 ## Usage
 
 Run the artisan command:
